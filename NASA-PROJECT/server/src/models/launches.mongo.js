@@ -36,3 +36,6 @@ upcoming: {
 
     }
 });
+
+
+module.exports = mongoose.model('launch', launchesSchema);
