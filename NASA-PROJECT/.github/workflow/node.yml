@@ -6,12 +6,24 @@ on:
     branches:[master]
 jobs:
   build:
+    env:
+      CI: true
+      MONGO_URL: mongodb://localhost/test
+    strategy:
+     matrix:
+       node-version: [14.x, 20.x] 
+       mongodb-version: ['4.4','7.07'] 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: use Node js version 20
+      - name: use Node js version ${{ matrix.node_version }}
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: ${{ matrix.node-version}}
+      - name: Use MongoDB from github action
+        uses: supercharge/mongodb-github-action@1.6.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version}}    
       - run: npm install
-      - run: npm run build --prefix client     
+      - run: npm run build --prefix client
+      - run: npm test     
