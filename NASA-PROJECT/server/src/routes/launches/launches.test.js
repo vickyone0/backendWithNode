@@ -1,6 +1,7 @@
 
 const request = require('supertest');
 const app = require('../../app');
+const { mongoConnect} = require('../../services/mongo');
 
 describe('Test GET /launches', ()=>{
     test('it should respose with status code 200',async () =>{

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const launchesSchema = new mongoose.Schema({
-    flighterNumber: {
+    flightNumber: {
         type:Number,
         required: true
     },
@@ -38,4 +38,4 @@ upcoming: {
 });
 
 
-module.exports = mongoose.model('launch', launchesSchema);
+module.exports = mongoose.model('Launch', launchesSchema);
